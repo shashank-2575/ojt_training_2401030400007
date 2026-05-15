@@ -1,0 +1,91 @@
+*{font-family: "Gill Sans", sans-serif;
+}
+.head{
+    display: flex;
+    align-items: baseline;
+    justify-content: flex-end;
+    flex-direction: row;
+    gap: 30px;
+    padding: 0 20px;
+    margin: 0;
+    height: 100px;
+    padding-left: 250px;
+    padding-right:250px ;
+    padding-top: 20px;
+
+}
+
+.head > div:last-child{
+    margin-left: auto;
+}
+.logo{
+    font-weight: 500;
+    font-size: 30px;
+    padding-left: 0;
+}
+
+.head a {
+    color: black;
+    text-decoration: none;
+}
+
+#profile {
+    border-radius: 50%;
+    border-width: 2px;
+    padding: 2px;
+    margin-right: 40px;
+}
+.main{
+    padding-left: 250px;
+    padding-right:250px ;
+
+}
+
+.name_label {
+    display: flex;
+    align-items: baseline;
+    flex-direction: column;
+    gap: 8px;
+    padding-left: 20px;
+    padding-top: 30px;
+}
+
+.pencil_icon {
+    width: 16px;
+    height: 16px;
+}
+.main > div:nth-child(2) { 
+    display: flex;
+    justify-content: baseline;
+    align-items: center;
+ }
+ .edit_name{
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+    background-color: white;
+    border-radius:15px; 
+    font-size: 17px;
+    height: 150px;
+
+ }
+.edit_address{
+    padding-left: 20px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+    background-color: white;
+    border-radius:15px; 
+    font-size: 17px;   
+    padding-top: 30px; 
+    height: 150px;
+
+}
+.but{
+    display: flex;
+    flex-direction: row;
+    gap:10px;
+}
+.but>div>button{
+    color:#20a0b9;
+    padding-left: 15px;
+    padding-right: 15px;
+    border-radius:10px;
+    background-color: #fafafa;
+}

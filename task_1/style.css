@@ -7,43 +7,113 @@
 
 }
 .navigation{
-    height:60px;
+    height:90px;
     display:flex;
     flex-direction:row;
     justify-content: space-around;
     background-color:rgb(242, 242, 242);
     align-items: center;
-
-    
+    gap:10px;
+}
+.menu-panel{
+    position: relative;
+}
+.menu-panel summary{
+    list-style:none;
+    cursor:pointer;
+    padding:0;
+    border:none;
+    background:none;
+}
+.menu-panel summary::-webkit-details-marker{
+    display:none;
+}
+.menu-toggle{
+    display:flex;
+    flex-direction:column;
+    justify-content:space-between;
+    width:30px;
+    height:22px;
+    padding:4px 0;
+}
+.menu-toggle span{
+    display:block;
+    width:100%;
+    height:3px;
+    background:#002080;
+    border-radius:2px;
+}
+.menu-table-wrap{
+    display:none;
+    position:absolute;
+    left:0;
+    top:calc(100% + 8px);
+    background:#fff;
+    border:1px solid rgba(0,0,0,0.15);
+    box-shadow:0 10px 25px rgba(0,0,0,0.12);
+    padding:12px;
+    z-index:20;
+    min-width:960px;
+    overflow:auto;
+}
+.menu-panel[open] .menu-table-wrap{
+    display:block;
+}
+.menu-table{
+    width:100%;
+    border-collapse: collapse;
+}
+.menu-table th,
+.menu-table td{
+    border:1px solid rgba(0,0,0,0.15);
+    padding:10px 12px;
+    text-align:left;
+    font-size:14px;
+    white-space:nowrap;
+}
+.menu-table th{
+    background:rgba(0,32,128,0.08);
+    color:#002080;
+}
+.menu-table tbody tr:nth-child(even){
+    background:rgba(0,0,0,0.03);
 }
 .dropdown{ 
+    border:none;
     background-color: red;  
-    height: 30px;  
+    height: 40px;  
     display:flex;
     gap:0;
+    
     
 
 }
 .search{
-    width: 300px;
+    padding-left:20px;
+    font-size:20px;
+    border:none;
+    width: 700px;
 }
 .material-symbols-outlined{
-    color: rgb(248, 247, 247);
+    color:#002080;
 }
 .selector{
+    border:none;
     display: flex;
-    justify-content: center;
+    padding-left:0px;
+    padding-right:10px;
+    justify-content:center;
     height: 60px;
-    gap:5px;
+    gap:0px;
 
 
 
 }
 #items{
     display:flex;
-    font-size:16px;
+    font-size:18px;
     border:none;
-    padding: 0;
+    padding-left: 0;
     margin: 0;
     width: 180px;
     text-align: center;
@@ -59,11 +129,19 @@
 }
 .button{
     background-color:rgb(223, 87, 9);
+    width:35px;
+    border:none;    
 }
 .cart{
+    margin-left:0px;
+    padding-left:40px;
     display:flex;
-    font-size:35;
+    color:#002080;
+    
 }
+.cart p{
+    padding-left:10px;
+    font-size:25px}
 main {
     text-align: center;
 }
@@ -71,8 +149,76 @@ img {
     max-width: 100%;
     height: auto;
 }
-.image{
-      display: flex; /* Or inline-block */
-  overflow-x: auto;
-  white-space: nowrap;
+.slideshow-container {
+    position: relative;
+    width: 100%;
+    height: 600px;
+    overflow: hidden;
+    margin: 0 auto;
 }
+.slideshow {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.9s ease-in-out;
+}
+.slideshow img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    flex-shrink: 0;
+}
+.arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    font-size: 24px;
+    z-index: 10;
+}
+.left-arrow {
+    left: 10px;
+}
+.right-arrow {
+    right: 10px;
+}
+.arrow:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+
+
+#login{
+    display:flex;
+    color:rgb(237, 7, 91);
+}
+.catagories{
+    border:none; 
+    border-left:1px solid red;
+    padding-right:10px;
+    padding-left:10px;
+
+}
+.footer{
+    
+    font-size:16px;
+    padding-top:40px;
+    display:flex;
+    flex-direction:row;
+    height:500px;
+    justify-content:center;
+    color:white;
+    background-color:rgb(29, 181, 202);
+    
+}
+.footer div{ 
+    gap:100px;
+    text-decoration:none;
+
+}
+/* =======================================================================================================================================================
+========================================================================================================================================================== */
