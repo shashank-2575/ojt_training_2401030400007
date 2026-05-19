@@ -168,7 +168,7 @@ img {
     object-fit: cover;
     flex-shrink: 0;
 }
-.arrow {
+.slideshow-container .arrow {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
@@ -180,13 +180,13 @@ img {
     font-size: 24px;
     z-index: 10;
 }
-.left-arrow {
+.slideshow-container .left-arrow {
     left: 10px;
 }
-.right-arrow {
+.slideshow-container .right-arrow {
     right: 10px;
 }
-.arrow:hover {
+.slideshow-container .arrow:hover {
     background-color: rgba(0, 0, 0, 0.8);
 }
 
@@ -235,7 +235,6 @@ img {
     width: 200px;
     background-color: blue;
     border-radius: 50%;
-    background-image: url(https://makerbazar.in/cdn/shop/collections/Makerware_Collection_Bullet_-_Aeromodelling-02-02.png?v=1573633272&width=480) ;
     background: size 20px;
      background-position: center;
     background-repeat: no-repeat;
@@ -244,17 +243,71 @@ img {
 }
 .circle_header{
     padding-top:60px;
-    background-color: yellow;
+    background-color: #f3f5f6;
     display: flex;
     justify-content: space-between;
-    padding-left: 20px;
-    padding-right: 20px;
-    font-size: 22px;
+    padding-left: 70px;
+    padding-right: 100px;
+    font-size: 27px;
     align-items: baseline;
     padding-bottom: 10px;
+    -webkit-text-stroke: 0.5px;
+
 }
 .circle:hover {
     border: 5px solid rgb(253, 252, 252); 
     transition: border-width 0.6s ease;
 }
+.para{
+    font-size: 20px;
+    padding-left:25px;
+  display: inline-flex;
+  align-items: center;
+  gap:9px;
+}
+.para span{
+  display: inline-block;
+  -webkit-text-stroke: 0.5px ;
+  -webkit-text-fill-color: ;
+    /* font-weight: 600; */
+}
+.para span:first-child:hover{    
+  color: rgb(230, 60, 46);
+  transition: color 0.1s ease;
+  transform: scale(1.1); 
+}
 
+.para .arrow{
+    position: static;
+    display: inline-block;
+    background: none;
+    color: inherit;
+    padding: 0;
+    opacity: 0;
+    transition: opacity 0.25s ease, transform 0.25s ease;
+}
+.para:hover .arrow{
+    opacity: 1;
+    transform: translateX(4px);
+}
+.box5{
+    display: grid;
+     grid-template-columns: repeat(6, 1fr); 
+      place-items: center;
+      width: 100%;
+      height: 87.5%;
+     padding-left: 50px;
+     padding-right: 50px;
+
+}
+.box{
+    border:1px solid red;
+    background-color: rgb(109, 187, 247);
+    width: 100%;
+      height: 87.5%;
+      
+}
+.sub_box{
+    background-color:rgb(250, 184, 184);
+    height: 50%;
+}
