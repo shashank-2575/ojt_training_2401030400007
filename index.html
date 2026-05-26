@@ -1,0 +1,809 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sleep Diary</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Mono:wght@300;400&display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="./dist/output.css" />
+    <!-- <style>
+    :root {
+      --night: #0d0f1a;
+      --deep: #12152b;
+      --dusk: #1e2240;
+      --indigo: #2b3175;
+      --violet: #6c63b5;
+      --lavender: #b8b0e8;
+      --moon: #e8e4f7;
+      --star: #f5e6a3;
+      --soft: #c9c0e8;
+      --muted: #7a748f;
+      --border: rgba(108,99,181,0.25);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background-color: var(--night);
+      color: var(--moon);
+      font-family: 'Cormorant Garamond', serif;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* Starfield background */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image:
+        radial-gradient(1px 1px at 15% 20%, rgba(248,240,255,0.7) 0%, transparent 100%),
+        radial-gradient(1px 1px at 40% 10%, rgba(248,240,255,0.5) 0%, transparent 100%),
+        radial-gradient(1.5px 1.5px at 70% 35%, rgba(245,230,163,0.6) 0%, transparent 100%),
+        radial-gradient(1px 1px at 90% 15%, rgba(248,240,255,0.4) 0%, transparent 100%),
+        radial-gradient(1px 1px at 25% 60%, rgba(248,240,255,0.3) 0%, transparent 100%),
+        radial-gradient(1.5px 1.5px at 55% 80%, rgba(245,230,163,0.4) 0%, transparent 100%),
+        radial-gradient(1px 1px at 80% 70%, rgba(248,240,255,0.5) 0%, transparent 100%),
+        radial-gradient(1px 1px at 10% 85%, rgba(248,240,255,0.3) 0%, transparent 100%),
+        radial-gradient(1px 1px at 60% 50%, rgba(248,240,255,0.2) 0%, transparent 100%),
+        radial-gradient(1px 1px at 35% 40%, rgba(245,230,163,0.3) 0%, transparent 100%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* Gradient glow */
+    body::after {
+      content: '';
+      position: fixed;
+      top: -200px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 700px;
+      height: 500px;
+      background: radial-gradient(ellipse, rgba(108,99,181,0.18) 0%, transparent 70%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* ── HEADER ── */
+    header {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      padding: 60px 20px 30px;
+    }
+
+    .moon-icon {
+      font-size: 2.8rem;
+      display: block;
+      margin-bottom: 12px;
+      animation: float 4s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50%       { transform: translateY(-8px); }
+    }
+
+    header h1 {
+      font-size: clamp(2.6rem, 6vw, 4.2rem);
+      font-weight: 300;
+      letter-spacing: 0.12em;
+      color: var(--moon);
+    }
+
+    header h1 span { color: var(--lavender); font-style: italic; }
+
+    header p {
+      margin-top: 10px;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.75rem;
+      letter-spacing: 0.2em;
+      color: var(--muted);
+      text-transform: uppercase;
+    }
+
+    /* ── MAIN LAYOUT ── */
+    main {
+      position: relative;
+      z-index: 1;
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 20px 80px;
+    }
+
+    /* ── SECTION TITLES ── */
+    .section-title {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.68rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--violet);
+      margin-bottom: 18px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .section-title::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+
+    /* ── CARD ── */
+    .card {
+      background: rgba(18, 21, 43, 0.7);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 32px;
+      margin-bottom: 28px;
+      backdrop-filter: blur(10px);
+      transition: border-color 0.3s;
+    }
+
+    .card:hover { border-color: rgba(108,99,181,0.5); }
+
+    /* ── FORM GRID ── */
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 22px;
+    }
+
+    .form-group { display: flex; flex-direction: column; gap: 8px; }
+    .form-group.full { grid-column: 1 / -1; }
+
+    label {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.68rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--soft);
+    }
+
+    input[type="date"],
+    input[type="time"],
+    input[type="number"],
+    select,
+    textarea {
+      background: rgba(30, 34, 64, 0.8);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      color: var(--moon);
+      font-family: 'DM Mono', monospace;
+      font-size: 0.85rem;
+      padding: 12px 14px;
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+      width: 100%;
+    }
+
+    input:focus, select:focus, textarea:focus {
+      border-color: var(--violet);
+      box-shadow: 0 0 0 3px rgba(108,99,181,0.15);
+    }
+
+    textarea { resize: vertical; min-height: 90px; line-height: 1.6; }
+
+    select option { background: var(--deep); }
+
+    /* ── QUALITY SLIDER ── */
+    .quality-row {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .slider-labels {
+      display: flex;
+      justify-content: space-between;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.65rem;
+      color: var(--muted);
+    }
+
+    input[type="range"] {
+      -webkit-appearance: none;
+      width: 100%;
+      height: 4px;
+      background: linear-gradient(to right, var(--indigo), var(--violet), var(--lavender));
+      border-radius: 4px;
+      outline: none;
+      cursor: pointer;
+    }
+
+    input[type="range"]::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      width: 20px;
+      height: 20px;
+      background: var(--star);
+      border-radius: 50%;
+      border: 2px solid var(--night);
+      box-shadow: 0 0 8px rgba(245,230,163,0.4);
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+
+    input[type="range"]::-webkit-slider-thumb:hover { transform: scale(1.15); }
+
+    .quality-display {
+      text-align: center;
+      font-size: 1.4rem;
+      color: var(--star);
+      min-height: 24px;
+    }
+
+    /* ── MOOD PILLS ── */
+    .mood-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .mood-btn {
+      background: rgba(30, 34, 64, 0.6);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      color: var(--soft);
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 0.9rem;
+      padding: 8px 18px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .mood-btn:hover,
+    .mood-btn.active {
+      background: rgba(108,99,181,0.3);
+      border-color: var(--violet);
+      color: var(--moon);
+    }
+
+    .mood-btn.active { box-shadow: 0 0 10px rgba(108,99,181,0.25); }
+
+    /* ── DREAM TYPE ── */
+    .dream-types {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+    }
+
+    .dream-type-btn {
+      background: rgba(30, 34, 64, 0.6);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      color: var(--soft);
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 0.88rem;
+      padding: 10px 8px;
+      cursor: pointer;
+      text-align: center;
+      transition: all 0.2s;
+    }
+
+    .dream-type-btn .dt-icon { display: block; font-size: 1.3rem; margin-bottom: 4px; }
+
+    .dream-type-btn:hover,
+    .dream-type-btn.active {
+      background: rgba(108,99,181,0.25);
+      border-color: var(--violet);
+      color: var(--moon);
+    }
+
+    /* ── SUBMIT BUTTON ── */
+    .btn-save {
+      width: 100%;
+      padding: 16px;
+      background: linear-gradient(135deg, var(--indigo), var(--violet));
+      border: none;
+      border-radius: 10px;
+      color: var(--moon);
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.1rem;
+      letter-spacing: 0.15em;
+      cursor: pointer;
+      transition: opacity 0.2s, transform 0.2s, box-shadow 0.2s;
+      margin-top: 8px;
+    }
+
+    .btn-save:hover {
+      opacity: 0.92;
+      transform: translateY(-1px);
+      box-shadow: 0 6px 24px rgba(108,99,181,0.35);
+    }
+
+    .btn-save:active { transform: translateY(0); }
+
+    /* ── HISTORY TABLE ── */
+    .history-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    .history-table th {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.62rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--muted);
+      text-align: left;
+      padding: 10px 12px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .history-table td {
+      font-size: 0.9rem;
+      padding: 14px 12px;
+      border-bottom: 1px solid rgba(108,99,181,0.1);
+      color: var(--soft);
+      vertical-align: middle;
+    }
+
+    .history-table tr:last-child td { border-bottom: none; }
+    .history-table tr:hover td { background: rgba(108,99,181,0.06); }
+
+    .stars-cell { color: var(--star); letter-spacing: 2px; }
+
+    .badge {
+      display: inline-block;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.6rem;
+      padding: 3px 9px;
+      border-radius: 20px;
+      letter-spacing: 0.1em;
+      background: rgba(108,99,181,0.2);
+      border: 1px solid var(--border);
+      color: var(--lavender);
+    }
+
+    /* ── STATS ROW ── */
+    .stats-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-bottom: 28px;
+    }
+
+    .stat-box {
+      background: rgba(18, 21, 43, 0.7);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 22px;
+      text-align: center;
+      backdrop-filter: blur(10px);
+    }
+
+    .stat-box .stat-val {
+      font-size: 2rem;
+      font-weight: 300;
+      color: var(--star);
+      display: block;
+    }
+
+    .stat-box .stat-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.62rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-top: 6px;
+      display: block;
+    }
+
+    /* ── TOAST ── */
+    .toast {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      background: var(--dusk);
+      border: 1px solid var(--violet);
+      border-radius: 10px;
+      padding: 14px 22px;
+      font-size: 0.88rem;
+      color: var(--lavender);
+      box-shadow: 0 8px 30px rgba(0,0,0,0.4);
+      z-index: 100;
+      opacity: 0;
+      transform: translateY(12px);
+      transition: all 0.35s;
+      pointer-events: none;
+    }
+
+    .toast.show { opacity: 1; transform: translateY(0); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 600px) {
+      .form-grid { grid-template-columns: 1fr; }
+      .dream-types { grid-template-columns: repeat(2, 1fr); }
+      .stats-row { grid-template-columns: 1fr; }
+      header h1 { font-size: 2.2rem; }
+    }
+  </style> -->
+</head>
+
+<body class="min-h-screen text-white bg-[radial-gradient(circle_at_top,_#7c3aed_0%,_#4c1d95_35%,_#000000_100%)]">
+
+    <!-- FLOATING GLASSMORPHIC NAV BAR -->
+    <nav class="sticky top-0 z-50 backdrop-blur-md bg-black/40 border-b border-white/10">
+        <div class="max-w-4xl mx-auto px-6 py-4 flex justify-between items-center">
+            <!-- Brand / Logo -->
+            <a href="#"
+                class="flex items-center gap-2 text-lg tracking-wider font-semibold text-white hover:opacity-90 transition-opacity">
+                <span>🌙</span>
+                <span>Sleep<span class="text-violet-400 ">Diary</span></span>
+            </a>
+
+            <!-- Nav Links -->
+            <div class="flex items-center gap-6 text-xs font-mono tracking-wider">
+                <a href="#statsRow" class="nav-link nav-link-active" id="nav-statsRow">Dashboard</a>
+                <a href="#logForm" class="nav-link" id="nav-logForm">Log Sleep</a>
+                <a href="#history" class="nav-link" id="nav-history">History</a>
+            </div>
+
+            <!-- Action Button -->
+            <a href="#logForm"
+                class="hidden sm:inline-flex items-center justify-center px-4 py-2 text-[10px] font-mono tracking-widest text-white border border-violet-500/30 hover:border-violet-400 bg-violet-600/10 hover:bg-violet-600/20 rounded-full transition-all">
+                + NEW ENTRY
+            </a>
+        </div>
+    </nav>
+
+    <header class="flex flex-col items-center justify-center py-10 bg-transparent text-white text-center">
+
+        <span class="text-4xl mb-4">
+            🌙
+        </span><br>
+
+        <h1 class="text-5xl font-bold tracking-wide">
+            Sleep <span class="text-gray-400">Diary</span>
+        </h1><br>
+
+        <p class="mt-3 text-gray-400 text-lg">
+            Track your rest &middot; Understand your nights
+        </p>
+
+    </header>
+
+    <main>
+
+        <!-- STATS -->
+        <div class="flex gap-4 justify-center items-center flex-wrap" id="statsRow">
+
+            <div
+                class="border border-blue-700 rounded-xl px-8 py-5 bg-slate-900 text-white flex flex-col items-center min-w-[140px]">
+                <span class="text-3xl font-bold" id="statEntries">0</span>
+                <span class="text-gray-400 mt-2">Entries</span>
+            </div>
+
+            <div
+                class="border border-blue-700 rounded-xl px-8 py-5 bg-slate-900 text-white flex flex-col items-center min-w-[140px]">
+                <span class="text-3xl font-bold" id="statAvgHours">—</span>
+                <span class="text-gray-400 mt-2">Avg Hours</span>
+            </div>
+
+            <div
+                class="border border-blue-700 rounded-xl px-8 py-5 bg-slate-900 text-white flex flex-col items-center min-w-[140px]">
+                <span class="text-3xl font-bold" id="statAvgQuality">—</span>
+                <span class="text-gray-400 mt-2">Avg Quality</span>
+            </div>
+
+        </div>
+
+        <div id="logForm"
+            class="flex items-center gap-3 text-[#efeef2] font-mono text-[11px] tracking-[0.3em] uppercase mb-[18px] justify-center pt-5.5">
+            <span>Log Tonight</span>
+            <hr class="w-16 sm:w-48 md:w-96 border-t-4 border-[#FFFFFF]/25">
+        </div>
+        <div class="card border-2 border-gray-500 w-150 mx-auto">
+
+            <div class="form-grid">
+                <div class="form-group">
+                    <label>Date</label>
+                    <input type="date" id="entryDate" />
+                </div>
+                <div class="form-group"></div>
+
+                <div class="form-group">
+                    <label>Bedtime</label>
+                    <input type="time" id="bedtime" />
+                </div>
+                <div class="form-group">
+                    <label>Wake Time</label>
+                    <input type="time" id="waketime" />
+                </div>
+
+                <div class="form-group">
+                    <label>Awakenings</label>
+                    <input type="number" id="awakenings" min="0" max="20" placeholder="0" />
+                </div>
+                <div class="form-group">
+                    <label>Caffeine (cups)</label>
+                    <input type="number" id="caffeine" min="0" max="20" placeholder="0" />
+                </div>
+
+                <!-- Quality Slider -->
+                <div class="form-group full">
+                    <label>Sleep Quality</label>
+                    <div class="quality-row">
+                        <div class="quality-display" id="qualityDisplay">⭐⭐⭐</div>
+                        <input type="range" id="qualitySlider" min="1" max="5" value="3" />
+                        <div class="slider-labels">
+                            <span>Terrible</span><span>Poor</span><span>Fair</span><span>Good</span><span>Perfect</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Morning Mood -->
+                <div class="form-group full">
+                    <label>Morning Mood</label>
+                    <div class="mood-grid" id="moodGrid">
+                        <button class="mood-btn" data-mood="Refreshed">✨ Refreshed</button>
+                        <button class="mood-btn" data-mood="Groggy">🌫 Groggy</button>
+                        <button class="mood-btn" data-mood="Anxious">😰 Anxious</button>
+                        <button class="mood-btn" data-mood="Calm">🌿 Calm</button>
+                        <button class="mood-btn" data-mood="Tired">😴 Tired</button>
+                        <button class="mood-btn" data-mood="Energised">⚡ Energised</button>
+                    </div>
+                </div>
+
+                <!-- Dream Type -->
+                <div class="form-group full">
+                    <label>Dream Type</label>
+                    <div class="dream-types" id="dreamGrid">
+                        <button class="dream-type-btn" data-dream="No Dream"><span class="dt-icon">🌑</span>No
+                            Dream</button>
+                        <button class="dream-type-btn" data-dream="Pleasant"><span
+                                class="dt-icon">🌸</span>Pleasant</button>
+                        <button class="dream-type-btn" data-dream="Vivid"><span class="dt-icon">🎨</span>Vivid</button>
+                        <button class="dream-type-btn" data-dream="Nightmare"><span
+                                class="dt-icon">🕷</span>Nightmare</button>
+                        <button class="dream-type-btn" data-dream="Lucid"><span class="dt-icon">🔮</span>Lucid</button>
+                        <button class="dream-type-btn" data-dream="Recurring"><span
+                                class="dt-icon">🔁</span>Recurring</button>
+                    </div>
+                </div>
+
+                <!-- Notes -->
+                <div class="form-group full">
+                    <label>Notes</label>
+                    <textarea id="notes"
+                        placeholder="Any thoughts, habits, or observations from last night…"></textarea>
+                </div>
+            </div>
+
+            <button class="btn-save" onclick="saveEntry()">✦ Save Entry</button>
+        </div>
+
+        <!-- HISTORY -->
+        <div id="history"
+            class="flex items-center gap-3 text-[#595295] font-mono text-[11px] tracking-[0.3em] uppercase mb-[18px] justify-center pt-6">
+            <span>Recent Nights</span>
+            <hr class="w-16 sm:w-48 md:w-96 border-t-4 border-[#FFFFFF]/25">
+        </div>
+        <div class="card" style="padding: 0; overflow: hidden;">
+            <table class="history-table" id="historyTable">
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Bedtime</th>
+                        <th>Duration</th>
+                        <th>Quality</th>
+                        <th>Mood</th>
+                        <th>Dream</th>
+                    </tr>
+                </thead>
+                <tbody id="historyBody">
+                    <tr>
+                        <td colspan="6" style="text-align:center; color:var(--muted); padding:30px; font-style:italic;">
+                            No entries yet. Log your first night above.
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </main>
+
+    <div class="toast" id="toast"></div>
+
+    <script>
+        // ── State ──
+        let entries = JSON.parse(localStorage.getItem('sleepDiaryEntries') || '[]');
+        let selectedMood = '';
+        let selectedDream = '';
+
+        // ── Init ──
+        const today = new Date().toISOString().split('T')[0];
+        document.getElementById('entryDate').value = today;
+
+        // ── Quality Slider ──
+        const slider = document.getElementById('qualitySlider');
+        const qualityDisplay = document.getElementById('qualityDisplay');
+        const starLabels = ['😞 Terrible', '😕 Poor', '😐 Fair', '😊 Good', '🌟 Perfect'];
+
+        function updateQualityDisplay() {
+            const v = parseInt(slider.value);
+            const stars = '⭐'.repeat(v);
+            qualityDisplay.textContent = stars + ' ' + starLabels[v - 1];
+        }
+
+        slider.addEventListener('input', updateQualityDisplay);
+        updateQualityDisplay();
+
+        // ── Mood Selection ──
+        document.getElementById('moodGrid').addEventListener('click', e => {
+            const btn = e.target.closest('.mood-btn');
+            if (!btn) return;
+            document.querySelectorAll('.mood-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            selectedMood = btn.dataset.mood;
+        });
+
+        // ── Dream Selection ──
+        document.getElementById('dreamGrid').addEventListener('click', e => {
+            const btn = e.target.closest('.dream-type-btn');
+            if (!btn) return;
+            document.querySelectorAll('.dream-type-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            selectedDream = btn.dataset.dream;
+        });
+
+        // ── Calculate Duration ──
+        function calcDuration(bed, wake) {
+            if (!bed || !wake) return null;
+            const [bh, bm] = bed.split(':').map(Number);
+            const [wh, wm] = wake.split(':').map(Number);
+            let mins = (wh * 60 + wm) - (bh * 60 + bm);
+            if (mins < 0) mins += 1440;
+            const h = Math.floor(mins / 60);
+            const m = mins % 60;
+            return { hours: h, minutes: m, total: mins / 60 };
+        }
+
+        // ── Save Entry ──
+        function saveEntry() {
+            const date = document.getElementById('entryDate').value;
+            const bedtime = document.getElementById('bedtime').value;
+            const waketime = document.getElementById('waketime').value;
+            const quality = parseInt(slider.value);
+            const awakenings = document.getElementById('awakenings').value || 0;
+            const caffeine = document.getElementById('caffeine').value || 0;
+            const notes = document.getElementById('notes').value.trim();
+
+            if (!date || !bedtime || !waketime) {
+                showToast('Please fill in date, bedtime, and wake time.');
+                return;
+            }
+
+            const duration = calcDuration(bedtime, waketime);
+
+            const entry = {
+                id: Date.now(),
+                date, bedtime, waketime, quality,
+                awakenings: parseInt(awakenings),
+                caffeine: parseInt(caffeine),
+                mood: selectedMood,
+                dream: selectedDream,
+                notes,
+                duration: duration ? duration.total : null,
+                durationLabel: duration ? `${duration.hours}h ${duration.minutes}m` : '—'
+            };
+
+            entries.unshift(entry);
+            localStorage.setItem('sleepDiaryEntries', JSON.stringify(entries));
+
+            renderHistory();
+            updateStats();
+            resetForm();
+            showToast('Entry saved — sleep well! 🌙');
+        }
+
+        // ── Render History ──
+        function renderHistory() {
+            const tbody = document.getElementById('historyBody');
+            if (entries.length === 0) {
+                tbody.innerHTML = `<tr><td colspan="6" style="text-align:center;color:var(--muted);padding:30px;font-style:italic;">No entries yet. Log your first night above.</td></tr>`;
+                return;
+            }
+
+            tbody.innerHTML = entries.slice(0, 10).map(e => {
+                const stars = '⭐'.repeat(e.quality);
+                const mood = e.mood ? `<span class="badge">${e.mood}</span>` : '—';
+                const dream = e.dream ? `<span class="badge">${e.dream}</span>` : '—';
+                const dateF = new Date(e.date + 'T00:00:00').toLocaleDateString('en-IN', { day: 'numeric', month: 'short' });
+                return `
+          <tr>
+            <td>${dateF}</td>
+            <td style="font-family:'DM Mono',monospace;font-size:0.8rem;">${e.bedtime || '—'}</td>
+            <td style="font-family:'DM Mono',monospace;font-size:0.8rem;">${e.durationLabel}</td>
+            <td class="stars-cell">${stars}</td>
+            <td>${mood}</td>
+            <td>${dream}</td>
+          </tr>`;
+            }).join('');
+        }
+
+        // ── Update Stats ──
+        function updateStats() {
+            document.getElementById('statEntries').textContent = entries.length;
+
+            const withDuration = entries.filter(e => e.duration);
+            if (withDuration.length) {
+                const avg = withDuration.reduce((s, e) => s + e.duration, 0) / withDuration.length;
+                const h = Math.floor(avg), m = Math.round((avg - h) * 60);
+                document.getElementById('statAvgHours').textContent = `${h}h${m ? m + 'm' : ''}`;
+            }
+
+            if (entries.length) {
+                const avgQ = (entries.reduce((s, e) => s + e.quality, 0) / entries.length).toFixed(1);
+                document.getElementById('statAvgQuality').textContent = avgQ + ' ⭐';
+            }
+        }
+
+        // ── Reset Form ──
+        function resetForm() {
+            document.getElementById('entryDate').value = today;
+            document.getElementById('bedtime').value = '';
+            document.getElementById('waketime').value = '';
+            document.getElementById('awakenings').value = '';
+            document.getElementById('caffeine').value = '';
+            document.getElementById('notes').value = '';
+            slider.value = 3;
+            updateQualityDisplay();
+            selectedMood = '';
+            selectedDream = '';
+            document.querySelectorAll('.mood-btn, .dream-type-btn').forEach(b => b.classList.remove('active'));
+        }
+
+        // ── Toast ──
+        function showToast(msg) {
+            const t = document.getElementById('toast');
+            t.textContent = msg;
+            t.classList.add('show');
+            setTimeout(() => t.classList.remove('show'), 3000);
+        }
+
+        // ── Init render ──
+        renderHistory();
+        updateStats();
+
+        // ── Nav Bar active link highlighting on scroll ──
+        const navLinks = {
+            statsRow: document.getElementById('nav-statsRow'),
+            logForm: document.getElementById('nav-logForm'),
+            history: document.getElementById('nav-history')
+        };
+        const sections = {
+            statsRow: document.getElementById('statsRow'),
+            logForm: document.getElementById('logForm'),
+            history: document.getElementById('history')
+        };
+
+        window.addEventListener('scroll', () => {
+            let activeId = 'statsRow';
+            const scrollPos = window.scrollY + 180;
+
+            if (sections.history && scrollPos >= sections.history.offsetTop) {
+                activeId = 'history';
+            } else if (sections.logForm && scrollPos >= sections.logForm.offsetTop) {
+                activeId = 'logForm';
+            }
+
+            Object.keys(navLinks).forEach(id => {
+                if (!navLinks[id]) return;
+                if (id === activeId) {
+                    navLinks[id].classList.add('nav-link-active');
+                } else {
+                    navLinks[id].classList.remove('nav-link-active');
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>
