@@ -1,0 +1,138 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    font-weight: 3  00;
+}
+
+body{
+    height: 100vh;
+    background: #f5f5f5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container{
+    width: 480px;
+    background: white;
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.08);
+}
+
+.heading{
+    text-align: center;
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 30px;
+}
+
+h2{
+    font-size: 20px;
+    margin-bottom: 8px;
+}
+
+.line{
+    color: #0077cc;
+    font-size: 15px;
+    margin-bottom: 25px;
+}
+
+.login{
+    display: flex;
+    gap: 15px;
+    margin-bottom: 25px;
+}
+
+.login button{
+    flex: 1;
+    height: 50px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background: white;
+    cursor: pointer;
+    font-size: 22px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.google-icon{
+    width: 30px;
+    height: 30px;
+}
+
+.facebook-icon{
+    width: 40px;
+    height: 40px;
+}
+
+.seprate{
+    display: flex;
+    align-items: center;
+    margin-bottom: 25px;
+}
+
+.seprate hr{
+    flex: 1;
+    border: none;
+    height: 1px;
+    background: #ddd;
+}
+
+
+.input{
+    margin-bottom: 18px;
+}
+
+.input input{
+    width: 100%;
+    padding: 15px;
+    border: 2px solid #009db9;
+    border-radius: 8px;
+    font-size: 16px;
+    outline: none;
+}
+
+.button{
+    width: 100%;
+    height: 50px;
+    border: 1px solid #d8dee1;
+    border-radius: 8px;
+    background-color: #009db9;
+    color: white;
+    font-size: 17px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.checkbox{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 25px;
+    font-size: 15px;
+}
+
+.checkbox input{
+    width: 18px;
+    height: 18px;
+    accent-color: #11b5d9;
+}
+
+.terms{
+    text-align: center;
+    font-size: 13px;
+    color: gray;
+}
+
+.terms a{
+    color: gray;
+}
+.google{
+    height: 20px;
+    width: 20px;
+}
