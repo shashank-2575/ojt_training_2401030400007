@@ -1,0 +1,152 @@
+*{font-family: "Gill Sans", sans-serif;
+}
+.head{
+    display: grid;
+    grid-template-columns: auto auto auto 1fr;
+    align-items: center;
+    gap: 18px;
+    margin: 0;
+    height: 100px;
+    padding: 20px 250px 0;
+}
+
+.head > div:last-child{
+    justify-self: end;
+}
+
+.logo{
+    font-weight: 500;
+    font-size: 30px;
+    justify-self: start;
+}
+
+.head > div:last-child{
+    justify-self: end;
+}
+
+.head a {
+    color: black;
+    text-decoration: none;
+}
+
+#profile {
+    border-radius: 50%;
+    border-width: 2px;
+    padding: 2px;
+    margin-right: 40px;
+}
+.main{
+    display: grid;
+    gap: 20px;
+    padding: 0 250px;
+    padding-top:120px;
+}
+
+.name_label {
+    display: grid;
+    gap: 8px;
+    padding: 30px 20px;
+}
+
+.pencil_icon {
+    width: 16px;
+    height: 16px;
+}
+
+.edit_name{
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+    background-color: white;
+    border-radius:15px; 
+    font-size: 17px;
+    min-height: 150px;
+}
+.edit_address{
+    padding: 30px 20px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+    background-color: white;
+    border-radius:15px; 
+    font-size: 17px;   
+    min-height: 150px;
+}
+
+.but{
+    display: inline-flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.but>div>button{
+    color:#20a0b9;
+    padding: 12px 15px;
+    border-radius:10px;
+    background-color: #fafafa;
+    white-space: nowrap;
+}
+
+.hidden {
+    display: none !important;
+}
+
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.45);
+    z-index: 1000;
+}
+
+.modal {
+    display: grid;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #fff;
+    border-radius: 18px;
+    width: min(800px, calc(100% - 40px));
+    max-width: 800px;
+    max-height: min(90vh, 900px);
+    overflow-y: auto;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
+    z-index: 1001;
+    padding: 24px;
+}
+
+.popup-form {
+    width: 100%;
+}
+
+.popup-form .form-control,
+.popup-form .form-select {
+    width: 100%;
+    min-width: 0;
+}
+
+.modal-content {
+    display: grid;
+    gap: 10px;
+    border:none;
+}
+
+.popup-form.row.g-3 {
+    row-gap: 10px;
+    column-gap: 16px;
+}
+
+.close-modal {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    background: transparent;
+    border: none;
+    font-size: 26px;
+    line-height: 1;
+    cursor: pointer;
+}
+
+body.modal-open header,
+body.modal-open main {
+    filter: blur(4px);
+}
+/* #modelTitle{
+    padding-bottom: 0px;
+} */

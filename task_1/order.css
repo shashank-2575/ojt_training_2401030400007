@@ -1,0 +1,71 @@
+*{font-family: "Gill Sans", sans-serif;
+}
+.head{
+    display: grid;
+    grid-template-columns: auto auto auto 1fr;
+    align-items: center;
+    gap: 18px;
+    margin: 0;
+    height: 100px;
+    padding: 20px 250px 0;
+}
+
+.head > div:last-child{
+    justify-self: end;
+}
+
+.logo{
+    font-weight: 500;
+    font-size: 30px;
+    justify-self: start;
+}
+
+.head > div:last-child{
+    justify-self: end;
+}
+
+.head a {
+    color: black;
+    text-decoration: none;
+}
+
+#profile {
+    border-radius: 50%;
+    border-width: 2px;
+    padding: 2px;
+    margin-right: 40px;
+}
+.main{
+    display: grid;
+    gap: 20px;
+    padding: 0 250px;
+    padding-top:120px;
+}
+
+.order_label {
+    display: grid;
+    gap: 8px;
+    padding: 30px 20px;
+    place-items: center;
+}
+
+.pencil_icon {
+    width: 16px;
+    height: 16px;
+}
+
+.edit_name{
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+    background-color: white;
+    border-radius:15px; 
+    font-size: 17px;
+    min-height: 150px;
+}
+.edit_address{
+    padding: 30px 20px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+    background-color: white;
+    border-radius:15px; 
+    font-size: 17px;   
+    min-height: 150px;
+}
